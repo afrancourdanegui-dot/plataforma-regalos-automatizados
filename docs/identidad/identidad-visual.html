@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siempre Presente — Identidad Visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --terracota:   #C7522A;
+    --durazno:     #F2956A;
+    --crema:       #FAF3EC;
+    --arena:       #EDE0D0;
+    --ciruelo:     #3D1F2E;
+    --carbón:      #2A1F1A;
+    --blanco:      #FFFFFF;
+    --gris-suave:  #7A6E68;
+  }
+
+  body {
+    background: var(--crema);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--carbón);
+  }
+
+  /* — HERO — */
+  .hero {
+    background: var(--ciruelo);
+    padding: 80px 60px 70px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--durazno);
+    margin-bottom: 20px;
+  }
+  .hero-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--crema);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+  .hero-logo em {
+    font-style: italic;
+    color: var(--durazno);
+  }
+  .hero-tagline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--arena);
+    letter-spacing: 0.5px;
+    margin-top: 16px;
+  }
+
+  /* — SECCIONES — */
+  .section {
+    padding: 60px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 24px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--ciruelo);
+    margin-bottom: 36px;
+  }
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--arena);
+    margin: 0 60px;
+  }
+
+  /* — PALETA — */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .swatch {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .swatch-color {
+    height: 120px;
+  }
+  .swatch-info {
+    background: white;
+    padding: 14px 16px;
+  }
+  .swatch-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--carbón);
+    margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-size: 11px;
+    color: var(--gris-suave);
+    font-family: monospace;
+    margin-bottom: 6px;
+  }
+  .swatch-role {
+    font-size: 10px;
+    color: var(--gris-suave);
+    line-height: 1.4;
+  }
+
+  /* — TIPOGRAFÍA — */
+  .type-block {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+  .type-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 12px;
+  }
+  .type-display {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--ciruelo);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .type-display-italic {
+    font-family: 'Fraunces', serif;
+    font-size: 52px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--terracota);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .type-meta {
+    font-size: 11px;
+    color: var(--gris-suave);
+    margin-bottom: 20px;
+  }
+  .type-body-demo {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--carbón);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .type-body-meta {
+    font-size: 11px;
+    color: var(--gris-suave);
+  }
+  .type-scale {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--arena);
+  }
+  .scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+  }
+  .scale-label {
+    font-size: 10px;
+    color: var(--gris-suave);
+    width: 80px;
+    flex-shrink: 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* — LOGO CONCEPTS — */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .logo-card {
+    border-radius: 16px;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    min-height: 180px;
+  }
+  .logo-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+  .logo-card-desc {
+    font-size: 12px;
+    color: var(--gris-suave);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* Logo A */
+  .logo-a { background: var(--ciruelo); }
+  .logo-a-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--durazno);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ciruelo);
+  }
+  .logo-a-text {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--crema);
+    letter-spacing: 0.5px;
+  }
+  .logo-a-text span { color: var(--durazno); font-style: italic; }
+  .logo-a .logo-card-label { color: var(--arena); }
+  .logo-a .logo-card-desc { color: var(--gris-suave); }
+
+  /* Logo B */
+  .logo-b { background: var(--crema); border: 1px solid var(--arena); }
+  .logo-b-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--terracota);
+    line-height: 1;
+  }
+  .logo-b-text {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ciruelo);
+  }
+  .logo-b .logo-card-label { color: var(--terracota); }
+
+  /* Logo C */
+  .logo-c { background: var(--durazno); }
+  .logo-c-wordmark {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--ciruelo);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .logo-c-wordmark em { font-style: italic; font-weight: 300; }
+  .logo-c-sub {
+    width: 32px;
+    height: 2px;
+    background: var(--ciruelo);
+    opacity: 0.4;
+  }
+  .logo-c .logo-card-label { color: var(--ciruelo); }
+  .logo-c .logo-card-desc { color: var(--ciruelo); opacity: 0.7; }
+
+  /* Logo D */
+  .logo-d { background: white; border: 1px solid var(--arena); }
+  .logo-d-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logo-d-ribbon {
+    width: 6px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--durazno), var(--terracota));
+    border-radius: 3px;
+  }
+  .logo-d-text-group { display: flex; flex-direction: column; }
+  .logo-d-main {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--ciruelo);
+    line-height: 1;
+  }
+  .logo-d-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-top: 4px;
+  }
+  .logo-d .logo-card-label { color: var(--terracota); }
+
+  /* — UI PREVIEW — */
+  .ui-preview {
+    background: var(--ciruelo);
+    padding: 60px;
+  }
+  .ui-preview .section-label { color: var(--durazno); }
+  .ui-preview .section-title { color: var(--crema); margin-bottom: 40px; }
+
+  .ui-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .ui-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .ui-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--arena);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--terracota);
+  }
+  .ui-card-name {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ciruelo);
+  }
+  .ui-card-relation {
+    font-size: 12px;
+    color: var(--gris-suave);
+    margin-top: 2px;
+  }
+  .ui-date-row {
+    background: var(--crema);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .ui-date-label {
+    font-size: 12px;
+    color: var(--gris-suave);
+    margin-bottom: 2px;
+  }
+  .ui-date-val {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--carbón);
+  }
+  .ui-badge {
+    background: var(--durazno);
+    color: var(--ciruelo);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+  .ui-badge-red {
+    background: var(--terracota);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .ui-gift-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid var(--arena);
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .ui-gift-icon {
+    font-size: 22px;
+  }
+  .ui-gift-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--carbón);
+  }
+  .ui-gift-price {
+    font-size: 12px;
+    color: var(--gris-suave);
+  }
+  .ui-btn {
+    width: 100%;
+    background: var(--terracota);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* — TOKENS — */
+  .tokens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .token-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  }
+  .token-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--terracota);
+    margin-bottom: 16px;
+  }
+  .token-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--crema);
+    font-size: 13px;
+    color: var(--carbón);
+  }
+  .token-row:last-child { border-bottom: none; }
+  .token-value {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--gris-suave);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Identidad Visual · Siempre Presente</div>
+  <div class="hero-logo">Siempre <em>Presente</em></div>
+  <div class="hero-tagline">Nunca más olvides una fecha importante</div>
+</div>
+
+<!-- PALETA -->
+<div class="section">
+  <div class="section-label">01 — Paleta de Colores</div>
+  <div class="section-title">Cálido, humano, con carácter</div>
+
+  <div class="palette-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#C7522A;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Terracota</div>
+        <div class="swatch-hex">#C7522A</div>
+        <div class="swatch-role">Color principal · CTAs · Acentos de energía</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F2956A;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Durazno</div>
+        <div class="swatch-hex">#F2956A</div>
+        <div class="swatch-role">Secundario · Badges · Hover states</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#3D1F2E;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Ciruelo</div>
+        <div class="swatch-hex">#3D1F2E</div>
+        <div class="swatch-role">Títulos · Fondos oscuros · Navbar</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FAF3EC; border: 1px solid #EDE0D0;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Crema</div>
+        <div class="swatch-hex">#FAF3EC</div>
+        <div class="swatch-role">Fondo principal · Calidez base</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="palette-grid" style="grid-template-columns: repeat(4,1fr);">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#EDE0D0;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Arena</div>
+        <div class="swatch-hex">#EDE0D0</div>
+        <div class="swatch-role">Bordes · Separadores · Cards</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#2A1F1A;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Carbón</div>
+        <div class="swatch-hex">#2A1F1A</div>
+        <div class="swatch-role">Texto cuerpo principal</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#7A6E68;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Gris cálido</div>
+        <div class="swatch-hex">#7A6E68</div>
+        <div class="swatch-role">Textos secundarios · Labels</div>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF; border: 1px solid #EDE0D0;"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Blanco</div>
+        <div class="swatch-hex">#FFFFFF</div>
+        <div class="swatch-role">Cards · Paneles · Formularios</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- TIPOGRAFÍA -->
+<div class="section">
+  <div class="section-label">02 — Tipografía</div>
+  <div class="section-title">Dos fuentes, dos personalidades</div>
+
+  <div class="type-block">
+    <div class="type-tag">Display — Fraunces (Serif)</div>
+    <div class="type-display">Siempre</div>
+    <div class="type-display-italic">Presente.</div>
+    <div class="type-meta">Fraunces · Light 300 · Para títulos, el logo, y momentos emocionales</div>
+    <div class="type-scale">
+      <div class="scale-row">
+        <span class="scale-label">H1</span>
+        <span style="font-family:'Fraunces',serif; font-size:40px; font-weight:300; color:#3D1F2E; line-height:1;">El regalo perfecto</span>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">H2</span>
+        <span style="font-family:'Fraunces',serif; font-size:28px; font-weight:300; color:#3D1F2E;">Tus personas importantes</span>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">H3</span>
+        <span style="font-family:'Fraunces',serif; font-size:20px; font-weight:400; color:#3D1F2E;">Cumpleaños de mamá</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-block">
+    <div class="type-tag">Cuerpo — Plus Jakarta Sans (Sans-serif)</div>
+    <div class="type-body-demo">
+      Registra a las personas que más quieres, define sus fechas importantes, y deja que <strong>Siempre Presente</strong> se encargue del resto. Nunca más quedarás mal en un momento que importa.
+    </div>
+    <div class="type-body-meta">Plus Jakarta Sans · Regular 400 · Para párrafos, botones, labels, UI en general</div>
+    <div class="type-scale">
+      <div class="scale-row">
+        <span class="scale-label">Body L</span>
+        <span style="font-size:16px; color:#2A1F1A;">Elige el regalo, nosotros coordinamos todo.</span>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">Body M</span>
+        <span style="font-size:14px; color:#2A1F1A;">Flores · Vinos · Tortas · Experiencias</span>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">Caption</span>
+        <span style="font-size:12px; color:#7A6E68; letter-spacing:0.3px;">Envío confirmado · 15 de julio · Lima</span>
+      </div>
+      <div class="scale-row">
+        <span class="scale-label">Label</span>
+        <span style="font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#C7522A;">Próximo envío</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- LOGOS -->
+<div class="section">
+  <div class="section-label">03 — Conceptos de Logo</div>
+  <div class="section-title">Cuatro direcciones para elegir</div>
+
+  <div class="logo-grid">
+    <!-- A -->
+    <div class="logo-card logo-a">
+      <div class="logo-a-mark">S</div>
+      <div class="logo-a-text">Siempre <span>Presente</span></div>
+      <div class="logo-card-label" style="color:#EDE0D0; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">Opción A — Círculo + Wordmark</div>
+      <div class="logo-card-desc" style="color:#7A6E68; font-size:12px; text-align:center; line-height:1.5;">Sello circular cálido sobre fondo ciruelo. Elegante y memorable.</div>
+    </div>
+
+    <!-- B -->
+    <div class="logo-card logo-b">
+      <div class="logo-b-mark">SP</div>
+      <div class="logo-b-text">Siempre Presente</div>
+      <div class="logo-card-label" style="color:#C7522A; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">Opción B — Monograma + Caps</div>
+      <div class="logo-card-desc">Iniciales grandes en serif, nombre en mayúsculas. Minimalista y limpio.</div>
+    </div>
+
+    <!-- C -->
+    <div class="logo-card logo-c">
+      <div class="logo-c-wordmark">Siempre<br><em>Presente</em></div>
+      <div class="logo-c-sub"></div>
+      <div class="logo-card-label" style="color:#3D1F2E; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">Opción C — Wordmark en durazno</div>
+      <div class="logo-card-desc" style="color:#3D1F2E; opacity:0.7;">Nombre en serif sobre fondo cálido. La "e" en itálica diferencia.</div>
+    </div>
+
+    <!-- D -->
+    <div class="logo-card logo-d">
+      <div class="logo-d-mark">
+        <div class="logo-d-ribbon"></div>
+        <div class="logo-d-text-group">
+          <div class="logo-d-main">Siempre Presente</div>
+          <div class="logo-d-sub">siemprepresente.pe</div>
+        </div>
+      </div>
+      <div class="logo-card-label" style="color:#C7522A; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:600;">Opción D — Barra + Texto</div>
+      <div class="logo-card-desc">Acento vertical degradado. Moderno, apto para apps y web.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- UI PREVIEW -->
+<div class="ui-preview">
+  <div class="section" style="padding-top:0; padding-bottom:0;">
+    <div class="section-label">04 — Preview de UI</div>
+    <div class="section-title">Cómo se ve en la plataforma</div>
+
+    <div class="ui-card">
+      <div class="ui-card-header">
+        <div class="ui-avatar">M</div>
+        <div>
+          <div class="ui-card-name">Mamá</div>
+          <div class="ui-card-relation">Destinatario · Lima, Surco</div>
+        </div>
+      </div>
+
+      <div class="ui-date-row">
+        <div>
+          <div class="ui-date-label">Próxima fecha</div>
+          <div class="ui-date-val">Cumpleaños · 15 julio</div>
+        </div>
+        <div class="ui-badge">En 12 días</div>
+      </div>
+
+      <div class="ui-date-row">
+        <div>
+          <div class="ui-date-label">Día de la Madre</div>
+          <div class="ui-date-val">Segunda semana de mayo</div>
+        </div>
+        <div class="ui-badge-red">Anual</div>
+      </div>
+
+      <div style="margin: 20px 0 12px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C7522A;">Regalo programado</div>
+
+      <div class="ui-gift-row">
+        <div class="ui-gift-icon">🌸</div>
+        <div>
+          <div class="ui-gift-name">Arreglo floral premium</div>
+          <div class="ui-gift-price">S/ 89 · Delivery incluido</div>
+        </div>
+      </div>
+
+      <button class="ui-btn">Confirmar y activar cobro automático</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOKENS RESUMEN -->
+<div class="section">
+  <div class="section-label">05 — Tokens de Diseño</div>
+  <div class="section-title">Referencia rápida para el desarrollador</div>
+
+  <div class="tokens-grid">
+    <div class="token-card">
+      <div class="token-title">Colores</div>
+      <div class="token-row"><span>--terracota</span><span class="token-value">#C7522A</span></div>
+      <div class="token-row"><span>--durazno</span><span class="token-value">#F2956A</span></div>
+      <div class="token-row"><span>--ciruelo</span><span class="token-value">#3D1F2E</span></div>
+      <div class="token-row"><span>--crema</span><span class="token-value">#FAF3EC</span></div>
+      <div class="token-row"><span>--arena</span><span class="token-value">#EDE0D0</span></div>
+      <div class="token-row"><span>--carbón</span><span class="token-value">#2A1F1A</span></div>
+      <div class="token-row"><span>--gris-cálido</span><span class="token-value">#7A6E68</span></div>
+    </div>
+    <div class="token-card">
+      <div class="token-title">Tipografía</div>
+      <div class="token-row"><span>Display</span><span class="token-value">Fraunces 300</span></div>
+      <div class="token-row"><span>Display italic</span><span class="token-value">Fraunces 300i</span></div>
+      <div class="token-row"><span>Cuerpo</span><span class="token-value">Jakarta Sans 400</span></div>
+      <div class="token-row"><span>Semi bold</span><span class="token-value">Jakarta Sans 600</span></div>
+      <div class="token-row"><span>H1</span><span class="token-value">40px / 1.1</span></div>
+      <div class="token-row"><span>H2</span><span class="token-value">28px / 1.2</span></div>
+      <div class="token-row"><span>Body</span><span class="token-value">16px / 1.7</span></div>
+    </div>
+    <div class="token-card">
+      <div class="token-title">Espaciado</div>
+      <div class="token-row"><span>xs</span><span class="token-value">4px</span></div>
+      <div class="token-row"><span>sm</span><span class="token-value">8px</span></div>
+      <div class="token-row"><span>md</span><span class="token-value">16px</span></div>
+      <div class="token-row"><span>lg</span><span class="token-value">24px</span></div>
+      <div class="token-row"><span>xl</span><span class="token-value">40px</span></div>
+      <div class="token-row"><span>2xl</span><span class="token-value">64px</span></div>
+    </div>
+    <div class="token-card">
+      <div class="token-title">Bordes y Sombras</div>
+      <div class="token-row"><span>radius-sm</span><span class="token-value">8px</span></div>
+      <div class="token-row"><span>radius-md</span><span class="token-value">12px</span></div>
+      <div class="token-row"><span>radius-lg</span><span class="token-value">20px</span></div>
+      <div class="token-row"><span>radius-full</span><span class="token-value">9999px</span></div>
+      <div class="token-row"><span>shadow-sm</span><span class="token-value">0 2px 12px rgba(0,0,0,.06)</span></div>
+      <div class="token-row"><span>shadow-md</span><span class="token-value">0 8px 32px rgba(0,0,0,.10)</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

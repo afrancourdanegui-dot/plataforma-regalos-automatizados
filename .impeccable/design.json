@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-26T00:00:00.000Z",
+  "title": "Design System: Siempre Presente",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Terracota Cálida",
+        "canonical": "#c7522a",
+        "tonalRamp": ["#3a1810", "#5c2615", "#80331b", "#a8431f", "#c7522a", "#d97650", "#e89c7e", "#f3c6b1"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Durazno Suave",
+        "canonical": "#f2956a",
+        "tonalRamp": ["#3d1f12", "#6b3620", "#9a4e2d", "#c96f44", "#f2956a", "#f6b08c", "#fad0b3", "#fdebd9"]
+      },
+      "tertiary": {
+        "role": "tertiary",
+        "displayName": "Ciruela Profunda",
+        "canonical": "#3d1f2e",
+        "tonalRamp": ["#140a0f", "#241218", "#3d1f2e", "#5a2e44", "#7a425c", "#9c5d78", "#bf8499", "#e0bfc8"]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Crema Cálida",
+        "canonical": "#faf3ec",
+        "tonalRamp": ["#2a1f1a", "#4a3a30", "#7a6e68", "#a89a8e", "#cdbfb0", "#ede0d0", "#f6ede2", "#faf3ec"]
+      },
+      "neutral-border": {
+        "role": "neutral",
+        "displayName": "Arena",
+        "canonical": "#ede0d0",
+        "tonalRamp": ["#2a1f1a", "#4a3a30", "#7a6e68", "#a89a8e", "#cdbfb0", "#ede0d0", "#f1e8db", "#f6efe5"]
+      },
+      "neutral-text": {
+        "role": "neutral",
+        "displayName": "Carbón Cálido",
+        "canonical": "#2a1f1a",
+        "tonalRamp": ["#2a1f1a", "#3f2f28", "#574238", "#71594c", "#8d7264", "#a99081", "#c6b0a0", "#e2d2c2"]
+      },
+      "neutral-text-secondary": {
+        "role": "neutral",
+        "displayName": "Gris Cálido",
+        "canonical": "#7a6e68",
+        "tonalRamp": ["#2a2522", "#423b36", "#5c534c", "#7a6e68", "#988c85", "#b7aca5", "#d6cdc7", "#f0ebe7"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Títulos de página y saludo. Reservado para momentos, no listas." },
+      "display-italic": { "displayName": "Display Italic", "purpose": "Nombre de personas registradas y confirmaciones. La itálica emocional, exclusiva." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de sección dentro del dashboard." },
+      "body": { "displayName": "Body", "purpose": "Formularios, descripciones, metadatos." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, badges de fecha, etiquetas de campo." }
+    },
+    "shadows": [
+      {
+        "name": "focus-product-card",
+        "value": "0 8px 24px rgba(42, 31, 26, 0.12)",
+        "purpose": "Única excepción al sistema plano: la tarjeta de producto seleccionada en el catálogo de regalo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Transiciones de color en hover/focus de botones e inputs. Sin bounce, sin elastic."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de un formulario (Guardar, Entrar, Crear cuenta).",
+      "html": "<button class=\"ds-btn-primary\">Guardar</button>",
+      "css": ".ds-btn-primary { background: #c7522a; color: #ffffff; padding: 10px 16px; border: none; border-radius: 8px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; font-weight: 600; transition: background 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: #a8431f; } .ds-btn-primary:focus-visible { outline: 2px solid #a8431f; outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.6; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Acción secundaria (Continuar con Google, Cancelar, Eliminar con variante de borde terracota).",
+      "html": "<button class=\"ds-btn-ghost\">Continuar con Google</button>",
+      "css": ".ds-btn-ghost { background: #ffffff; color: #3d1f2e; padding: 10px 16px; border: 1px solid #ede0d0; border-radius: 8px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; font-weight: 600; transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { border-color: #c7522a; } .ds-btn-ghost:focus-visible { outline: 2px solid #c7522a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo de formulario estándar (email, nombre, relación, ubicación).",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Nombre\" />",
+      "css": ".ds-input { background: #ffffff; color: #2a1f1a; border: 1px solid #ede0d0; border-radius: 8px; padding: 10px 16px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; transition: border-color 0.2s cubic-bezier(0.16,1,0.3,1); } .ds-input::placeholder { color: #7a6e68; } .ds-input:focus { border-color: #c7522a; outline: none; }"
+    },
+    {
+      "name": "Urgent Date Badge",
+      "kind": "chip",
+      "refersTo": "badge-urgent",
+      "description": "Fecha próxima que requiere atención real (ej. \"En 12 días\").",
+      "html": "<span class=\"ds-badge-urgent\">En 12 días</span>",
+      "css": ".ds-badge-urgent { display: inline-block; background: #c7522a; color: #ffffff; border-radius: 9999px; padding: 4px 10px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }"
+    },
+    {
+      "name": "Default Date Badge",
+      "kind": "chip",
+      "refersTo": "badge-default",
+      "description": "Fecha recurrente sin urgencia inmediata (ej. \"Anual\").",
+      "html": "<span class=\"ds-badge-default\">Anual</span>",
+      "css": ".ds-badge-default { display: inline-block; background: #f2956a; color: #3d1f2e; border-radius: 9999px; padding: 4px 10px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }"
+    },
+    {
+      "name": "Person Card",
+      "kind": "card",
+      "refersTo": "card-person",
+      "description": "Tarjeta de persona registrada dentro del dashboard, con su nombre en Fraunces italic.",
+      "html": "<div class=\"ds-card-person\"><div class=\"ds-avatar\">M</div><div><div class=\"ds-card-person-name\">Mamá</div><div class=\"ds-card-person-meta\">Madre · Lima, Surco</div></div></div>",
+      "css": ".ds-card-person { display: flex; align-items: center; gap: 14px; background: #ffffff; border: 1px solid #ede0d0; border-radius: 12px; padding: 16px; } .ds-avatar { width: 48px; height: 48px; border-radius: 9999px; background: #ede0d0; display: flex; align-items: center; justify-content: center; font-family: Fraunces, Georgia, serif; font-style: italic; font-size: 20px; color: #c7522a; } .ds-card-person-name { font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 300; font-size: 18px; color: #3d1f2e; } .ds-card-person-meta { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 12px; color: #7a6e68; margin-top: 2px; }"
+    },
+    {
+      "name": "Section Eyebrow",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Etiqueta de marca/sección sobre el contenido principal (ej. \"SIEMPRE PRESENTE\").",
+      "html": "<div class=\"ds-eyebrow\">Siempre Presente</div>",
+      "css": ".ds-eyebrow { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c7522a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Mayordomo Cálido",
+    "overview": "Siempre Presente no se siente como una herramienta de monitoreo ni como una tienda. Se siente como un mayordomo de confianza: alguien que toma nota una vez de lo que le importa a su gente, y después se encarga, en silencio, sin que tengas que volver a preguntarle. El usuario configura y confía, no vigila. Por eso el sistema rechaza dos reflejos: el SaaS corporativo frío y la tienda de regalos genérica. La calidez vive en los acentos, terracota y la serif Fraunces en los nombres de las personas y las fechas, mientras la estructura del producto se mantiene directa y rápida de usar. La única excepción deliberada es el momento de elegir el producto del regalo entre varias marcas: ahí, y solo ahí, el sistema puede sentirse más como explorar un catálogo curado.",
+    "keyCharacteristics": [
+      "Cálido en los acentos (terracota, Fraunces italic), eficiente en la estructura",
+      "Plano, con profundidad lograda por capas de color tonal, no por sombras",
+      "Botones y tarjetas directos: esquinas suaves pero sin decoración ni animaciones largas",
+      "El catálogo de regalo es la única pantalla con permiso para sentirse de tienda"
+    ],
+    "rules": [
+      { "name": "La Regla del Acento con Intención", "body": "El terracota se reserva para acción y urgencia real. Si todo es terracota, nada lo es.", "section": "colors" },
+      { "name": "La Regla de la Itálica Emocional", "body": "Fraunces italic se usa exclusivamente para el nombre de una persona o para el momento de confirmación, nunca en UI funcional.", "section": "typography" },
+      { "name": "La Regla del Plano por Defecto", "body": "Ninguna tarjeta del dashboard, formulario o lista lleva box-shadow en su estado de reposo.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do reservar el terracota para acción real: botón primario y badges de urgencia genuina.",
+      "Do usar Fraunces italic solo para nombres de personas y momentos de confirmación.",
+      "Do lograr profundidad con capas de color, no con box-shadow.",
+      "Do mantener los formularios cortos y directos.",
+      "Do permitir que el catálogo de productos del regalo se sienta como explorar."
+    ],
+    "donts": [
+      "Don't convertir el dashboard en un panel de monitoreo denso con métricas grandes y gradientes.",
+      "Don't hacer que el shell general se sienta como un carrito de compras o tienda genérica.",
+      "Don't usar border-left/border-right de color como acento decorativo.",
+      "Don't usar gradientes en texto.",
+      "Don't usar glassmorphism ni blur decorativo.",
+      "Don't apilar sombra y borde en la misma tarjeta.",
+      "Don't usar el patrón de métrica grande tipo SaaS genérico."
+    ]
+  }
+}
