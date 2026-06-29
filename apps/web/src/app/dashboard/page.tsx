@@ -15,12 +15,29 @@ export default async function DashboardPage() {
     where: { userId: user.id },
     orderBy: { createdAt: "asc" },
     include: {
-      occasions: { orderBy: { createdAt: "asc" } },
+      occasions: {
+        orderBy: { createdAt: "asc" },
+        include: {
+          _count: { select: { giftSelections: { where: { cancelledAt: null } } } },
+        },
+      },
       addresses: { orderBy: [{ isPrimary: "desc" }, { createdAt: "asc" }] },
     },
   });
 
   const saludo = user.name?.split(" ")[0] ?? user.email;
+
+  const proximasFechas = personas
+    .flatMap((persona) =>
+      persona.occasions.map((ocasion) => ({ persona, ocasion }))
+    )
+    .sort(
+      (a, b) =>
+        proximaFechaOcasion(a.ocasion).getTime() -
+        proximaFechaOcasion(b.ocasion).getTime()
+    );
+  const MAX_PROXIMAS = 5;
+  const proximasAMostrar = proximasFechas.slice(0, MAX_PROXIMAS);
 
   return (
     <div className="flex flex-1 flex-col items-center px-6 py-16">
@@ -34,17 +51,59 @@ export default async function DashboardPage() {
           </h1>
         </div>
 
-        <form
-          action={async () => {
-            "use server";
-            await signOut({ redirectTo: "/login" });
-          }}
-        >
-          <Button type="submit" variant="ghost" className="text-xs">
-            Cerrar sesión
-          </Button>
-        </form>
+        <div className="flex items-center gap-2">
+          <Link href="/dashboard/pedidos" className={buttonClasses("ghost", "text-xs")}>
+            Historial de pedidos
+          </Link>
+          <Link href="/dashboard/regalos" className={buttonClasses("ghost", "text-xs")}>
+            Catálogo de regalos
+          </Link>
+          <form
+            action={async () => {
+              "use server";
+              await signOut({ redirectTo: "/login" });
+            }}
+          >
+            <Button type="submit" variant="ghost" className="text-xs">
+              Cerrar sesión
+            </Button>
+          </form>
+        </div>
       </div>
+
+      {proximasAMostrar.length > 0 && (
+        <div className="mt-10 w-full max-w-2xl">
+          <h2 className="mb-4 font-display text-xl italic text-ciruelo">
+            Próximas fechas
+          </h2>
+          <div className="rounded-2xl border border-arena bg-white p-3">
+            <ul className="flex flex-col gap-1.5">
+              {proximasAMostrar.map(({ persona, ocasion }) => {
+                const badge = badgeDeOcasion(ocasion);
+                return (
+                  <li key={ocasion.id}>
+                    <Link
+                      href={`/dashboard/ocasiones/${ocasion.id}/editar`}
+                      className="flex items-center justify-between gap-2 rounded-lg bg-crema px-3 py-2.5 text-xs"
+                    >
+                      <span className="font-medium text-carbon">
+                        {motivoDeOcasion(ocasion)} de {persona.name}
+                      </span>
+                      <Badge urgent={badge.urgent}>{badge.label}</Badge>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          {proximasFechas.length > MAX_PROXIMAS && (
+            <p className="mt-2 text-xs text-gris-calido">
+              Y {proximasFechas.length - MAX_PROXIMAS} fecha
+              {proximasFechas.length - MAX_PROXIMAS === 1 ? "" : "s"} más.
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="mt-10 w-full max-w-2xl">
         <div className="mb-4 flex items-center justify-between">
@@ -101,6 +160,10 @@ export default async function DashboardPage() {
                   </Link>
                 </div>
 
+                {persona.notes && (
+                  <p className="mt-2 text-xs text-gris-calido">{persona.notes}</p>
+                )}
+
                 <div className="mt-4 flex flex-col gap-1.5">
                   {[...persona.occasions]
                     .sort(
@@ -111,17 +174,31 @@ export default async function DashboardPage() {
                     .map((ocasion) => {
                       const badge = badgeDeOcasion(ocasion);
                       return (
-                        <Link
+                        <div
                           key={ocasion.id}
-                          href={`/dashboard/ocasiones/${ocasion.id}/editar`}
-                          className="flex items-center justify-between rounded-lg bg-crema px-3 py-2.5 text-xs"
+                          className="flex items-center justify-between gap-2 rounded-lg bg-crema px-3 py-2.5 text-xs"
                         >
-                          <span className="font-medium text-carbon">
+                          <Link
+                            href={`/dashboard/ocasiones/${ocasion.id}/editar`}
+                            className="font-medium text-carbon"
+                          >
                             {motivoDeOcasion(ocasion)}
                             {ocasion.frequency === "MONTHLY" ? " · Mensual" : ""}
-                          </span>
-                          <Badge urgent={badge.urgent}>{badge.label}</Badge>
-                        </Link>
+                          </Link>
+                          <div className="flex items-center gap-3">
+                            <Link
+                              href={`/dashboard/ocasiones/${ocasion.id}/regalos`}
+                              className="font-semibold text-terracota"
+                            >
+                              {ocasion._count.giftSelections > 0
+                                ? `${ocasion._count.giftSelections} regalo${
+                                    ocasion._count.giftSelections === 1 ? "" : "s"
+                                  }`
+                                : "+ Elegir regalos"}
+                            </Link>
+                            <Badge urgent={badge.urgent}>{badge.label}</Badge>
+                          </div>
+                        </div>
                       );
                     })}
 

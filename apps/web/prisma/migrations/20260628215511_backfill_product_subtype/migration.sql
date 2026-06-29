@@ -1,0 +1,18 @@
+UPDATE products SET subtype = 'Rosas' WHERE name = 'Ramo de rosas rojas';
+UPDATE products SET subtype = 'Girasoles' WHERE name = 'Arreglo de girasoles';
+UPDATE products SET subtype = 'Flores secas' WHERE name = 'Caja de flores secas';
+UPDATE products SET subtype = 'Vino tinto' WHERE name = 'Vino tinto reserva';
+UPDATE products SET subtype = 'Espumante' WHERE name = 'Champagne brut';
+UPDATE products SET subtype = 'Pack de vinos' WHERE name = 'Pack de 2 vinos + copas';
+UPDATE products SET subtype = 'Chocolate' WHERE name = 'Torta de chocolate';
+UPDATE products SET subtype = 'Tres leches' WHERE name = 'Torta de tres leches';
+UPDATE products SET subtype = 'Cupcakes' WHERE name = 'Cupcakes surtidos (12 unidades)';
+UPDATE products SET subtype = 'Bombones' WHERE name = 'Caja de bombones premium';
+UPDATE products SET subtype = 'Chocolate artesanal' WHERE name = 'Chocolate artesanal 70% cacao';
+UPDATE products SET subtype = 'Trufas' WHERE name = 'Set de trufas';
+UPDATE products SET subtype = 'Día completo' WHERE name = 'Vale de spa día completo';
+UPDATE products SET subtype = 'Masajes' WHERE name = 'Sesión de masajes relajantes';
+UPDATE products SET subtype = 'Facial y manicure' WHERE name = 'Pack facial + manicure';
+UPDATE products SET subtype = 'Para mamá' WHERE name = 'Caja "Para Mamá"';
+UPDATE products SET subtype = 'Desayuno' WHERE name = 'Caja desayuno sorpresa';
+UPDATE products SET subtype = 'Relax' WHERE name = 'Caja relax';

@@ -114,7 +114,7 @@ export function motivoDeOcasion(ocasion: {
   return OCCASION_TYPE_LABEL[ocasion.type as OccasionTypeCode] ?? ocasion.type;
 }
 
-function inicioDelDia(fecha: Date) {
+export function inicioDelDia(fecha: Date) {
   const copia = new Date(fecha);
   copia.setHours(0, 0, 0, 0);
   return copia;
