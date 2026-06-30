@@ -33,7 +33,7 @@ export function MobileMenu({ isLoggedIn, displayName }: Props) {
       </button>
 
       {open && (
-        <div className="absolute left-0 right-0 top-full z-50 border-b border-arena bg-crema px-6 pb-5 pt-3 shadow-[0_8px_16px_-4px_rgba(61,31,46,0.10)]">
+        <div className="absolute left-0 right-0 top-full z-50 border-b border-arena bg-crema px-6 pb-5 pt-3" style={{ boxShadow: "var(--shadow-menu)" }}>
           <nav className="flex flex-col gap-1">
             <Link href="/catalogo" onClick={close} className="rounded-xl px-3 py-3 text-[14px] font-semibold text-carbon hover:bg-arena/50 transition-colors">
               Explorar regalos

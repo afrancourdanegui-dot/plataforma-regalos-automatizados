@@ -57,5 +57,5 @@ export function Field({
 
 export function FieldError({ children }: { children?: string }) {
   if (!children) return null;
-  return <p className="text-sm text-terracota">{children}</p>;
+  return <p role="alert" aria-live="polite" className="text-sm text-terracota">{children}</p>;
 }

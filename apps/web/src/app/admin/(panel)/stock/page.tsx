@@ -40,7 +40,7 @@ export default async function StockPage() {
         <h1 className="font-display text-3xl italic text-ciruelo">Demanda por producto</h1>
         <p className="mt-2 text-xs text-gris-calido">
           Cuántos pedidos programados hay de cada producto, para coordinar con los proveedores. No
-          es un inventario real — solo cuenta pedidos pendientes.
+          es un inventario real, solo cuenta pedidos pendientes.
         </p>
 
         {filas.length === 0 ? (
