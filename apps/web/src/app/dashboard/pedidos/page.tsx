@@ -97,7 +97,7 @@ export default async function PedidosPage() {
                           <input type="hidden" name="id" value={seleccion.id} />
                           <button
                             type="submit"
-                            className="text-xs font-semibold text-terracota"
+                            className="min-h-[44px] px-1 text-xs font-semibold text-terracota"
                           >
                             Cancelar
                           </button>

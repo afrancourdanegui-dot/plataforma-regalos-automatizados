@@ -45,7 +45,7 @@ export default async function CatalogoPage({
       {/* Header */}
       <div className="bg-arena">
         <div className="mx-auto max-w-[1080px] px-6 py-12">
-          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-[7px] text-[11px] font-bold uppercase tracking-[0.06em] text-[#a8431f]">
+          <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-[7px] text-[11px] font-bold uppercase tracking-[0.06em] text-ciruelo">
             <span className="h-1.5 w-1.5 rounded-full bg-terracota" />
             Catálogo
           </span>
@@ -59,7 +59,7 @@ export default async function CatalogoPage({
       </div>
 
       {/* Filtros por categoría */}
-      <div className="sticky top-0 z-10 border-b border-arena bg-crema/95 backdrop-blur-sm">
+      <div className="sticky top-0 z-10 border-b border-arena bg-crema">
         <div className="mx-auto flex max-w-[1080px] gap-2 overflow-x-auto px-6 py-3 scrollbar-none">
           <Link
             href="/catalogo"
@@ -99,7 +99,7 @@ export default async function CatalogoPage({
               <div
                 key={p.id}
                 className="overflow-hidden rounded-[18px] border border-arena bg-white"
-                style={{ boxShadow: "0 4px 14px -4px rgba(61,31,46,0.08)" }}
+                style={{ boxShadow: "var(--shadow-soft)" }}
               >
                 <div className="relative aspect-[4/3] w-full">
                   <Image
@@ -139,7 +139,7 @@ export default async function CatalogoPage({
           <Link
             href="/registro"
             className="relative inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
-            style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
+            style={{ boxShadow: "var(--shadow-cta)" }}
           >
             Crear cuenta gratis
           </Link>

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/dal";
 import { UserMenu } from "@/components/user-menu";
+import { MobileMenu } from "@/components/mobile-menu";
 
 export async function MarketingNav() {
   const user = await getCurrentUser();
 
   return (
-    <nav className="mx-auto flex max-w-[1080px] items-center justify-between px-6 py-6">
+    <nav className="relative mx-auto flex max-w-[1080px] items-center justify-between px-6 py-6">
       <div className="flex items-center gap-8">
         <Link
           href="/"
@@ -29,7 +30,9 @@ export async function MarketingNav() {
           </Link>
         </div>
       </div>
-      <div className="flex items-center gap-6">
+
+      {/* Desktop auth actions */}
+      <div className="hidden items-center gap-6 sm:flex">
         {user ? (
           <UserMenu name={user.name} email={user.email} />
         ) : (
@@ -40,13 +43,16 @@ export async function MarketingNav() {
             <Link
               href="/registro"
               className="rounded-[10px] bg-terracota px-[18px] py-[10px] text-[13px] font-bold text-white"
-              style={{ boxShadow: "0 4px 14px -4px rgba(61,31,46,0.08)" }}
+              style={{ boxShadow: "var(--shadow-soft)" }}
             >
               Crear cuenta
             </Link>
           </>
         )}
       </div>
+
+      {/* Mobile hamburger */}
+      <MobileMenu isLoggedIn={!!user} displayName={user?.name ?? user?.email ?? undefined} />
     </nav>
   );
 }

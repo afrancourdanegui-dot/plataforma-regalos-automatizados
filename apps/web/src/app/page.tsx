@@ -62,7 +62,7 @@ export default async function Home() {
       {/* Hero */}
       <section className="mx-auto grid max-w-[1080px] grid-cols-1 items-center gap-8 px-6 pb-16 pt-8 md:grid-cols-2 md:gap-16">
         <div>
-          <span className="mb-[22px] inline-flex items-center gap-1.5 rounded-full bg-arena px-3.5 py-[7px] text-[11px] font-bold uppercase tracking-[0.06em] text-[#a8431f]">
+          <span className="mb-[22px] inline-flex items-center gap-1.5 rounded-full bg-arena px-3.5 py-[7px] text-[11px] font-bold uppercase tracking-[0.06em] text-ciruelo">
             <span className="h-1.5 w-1.5 rounded-full bg-terracota" />
             Siempre Presente
           </span>
@@ -82,7 +82,7 @@ export default async function Home() {
             <Link
               href="/dashboard"
               className="inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
-              style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
+              style={{ boxShadow: "var(--shadow-cta)" }}
             >
               Ir al dashboard
             </Link>
@@ -91,7 +91,7 @@ export default async function Home() {
               <Link
                 href="/registro"
                 className="inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
-                style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
+                style={{ boxShadow: "var(--shadow-cta)" }}
               >
                 Crear cuenta
               </Link>
@@ -110,13 +110,8 @@ export default async function Home() {
             <div
               key={p.name}
               className={`flex items-center gap-3.5 rounded-[18px] border bg-white p-2.5 ${
-                p.featured ? "-translate-x-1 border-terracota" : "border-arena"
+                p.featured ? "-translate-x-1 border-2 border-terracota" : "border-arena"
               }`}
-              style={{
-                boxShadow: p.featured
-                  ? "0 10px 28px -8px rgba(61,31,46,0.14)"
-                  : "0 4px 14px -4px rgba(61,31,46,0.08)",
-              }}
             >
               <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-[12px]">
                 <Image src={p.img} alt={p.name} fill className="object-cover" />
@@ -139,11 +134,7 @@ export default async function Home() {
       <section id="como-funciona" className="bg-arena">
         <div className="mx-auto max-w-[1080px] px-6 py-16">
           <div className="mb-12 text-center">
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-[7px] text-[11px] font-bold uppercase tracking-[0.06em] text-[#a8431f]">
-              <span className="h-1.5 w-1.5 rounded-full bg-terracota" />
-              Proceso
-            </span>
-            <h2 className="mt-3.5 font-display italic font-light text-[2rem] text-ciruelo">
+            <h2 className="font-display italic font-light text-[2rem] text-ciruelo">
               Cómo funciona
             </h2>
           </div>
@@ -152,7 +143,7 @@ export default async function Home() {
               <div
                 key={s.n}
                 className="rounded-[18px] bg-white p-7"
-                style={{ boxShadow: "0 4px 14px -4px rgba(61,31,46,0.08)" }}
+                style={{ boxShadow: "var(--shadow-soft)" }}
               >
                 <div className="mb-[18px] flex h-[38px] w-[38px] items-center justify-center rounded-[10px] bg-ciruelo font-display italic text-[17px] text-crema">
                   {s.n}
@@ -168,11 +159,7 @@ export default async function Home() {
       {/* Para cada ocasión */}
       <section id="categorias" className="mx-auto max-w-[1080px] px-6 py-16">
         <div className="mb-12 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-arena px-3.5 py-[7px] text-[11px] font-bold uppercase tracking-[0.06em] text-[#a8431f]">
-            <span className="h-1.5 w-1.5 rounded-full bg-terracota" />
-            Catálogo
-          </span>
-          <h2 className="mt-3.5 font-display italic font-light text-[2rem] text-ciruelo">
+          <h2 className="font-display italic font-light text-[2rem] text-ciruelo">
             Para cada ocasión
           </h2>
         </div>
@@ -181,7 +168,7 @@ export default async function Home() {
             <div
               key={c.name}
               className="overflow-hidden rounded-[18px] border border-arena bg-white"
-              style={{ boxShadow: "0 4px 14px -4px rgba(61,31,46,0.08)" }}
+              style={{ boxShadow: "var(--shadow-soft)" }}
             >
               <div className="relative aspect-[4/3] w-full">
                 <Image src={c.img} alt={c.name} fill className="object-cover" />
@@ -210,7 +197,7 @@ export default async function Home() {
           <Link
             href={user ? "/dashboard" : "/registro"}
             className="relative inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
-            style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
+            style={{ boxShadow: "var(--shadow-cta)" }}
           >
             {user ? "Ir al dashboard" : "Crear cuenta"}
           </Link>
