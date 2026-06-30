@@ -12,7 +12,7 @@ export const proxy = auth((req) => {
   }
 
   if (isOnAuthPage && isLoggedIn) {
-    return Response.redirect(new URL("/dashboard", req.nextUrl.origin));
+    return Response.redirect(new URL("/", req.nextUrl.origin));
   }
 });
 

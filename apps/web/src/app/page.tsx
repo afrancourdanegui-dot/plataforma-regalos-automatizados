@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MarketingNav } from "@/components/marketing-nav";
+import { getCurrentUser } from "@/lib/dal";
 
 const productCards = [
   {
@@ -49,28 +51,13 @@ const steps = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const user = await getCurrentUser();
+
   return (
     <div className="min-h-screen bg-crema font-sans text-carbon">
 
-      {/* Nav */}
-      <nav className="mx-auto flex max-w-[1080px] items-center justify-between px-6 py-6">
-        <span className="font-display italic font-light text-[19px] text-ciruelo">
-          Siempre Presente
-        </span>
-        <div className="flex items-center gap-6">
-          <Link href="/login" className="text-[13px] font-semibold text-ciruelo">
-            Iniciar sesión
-          </Link>
-          <Link
-            href="/registro"
-            className="rounded-[10px] bg-terracota px-[18px] py-[10px] text-[13px] font-bold text-white"
-            style={{ boxShadow: "0 4px 14px -4px rgba(61,31,46,0.08)" }}
-          >
-            Crear cuenta
-          </Link>
-        </div>
-      </nav>
+      <MarketingNav />
 
       {/* Hero */}
       <section className="mx-auto grid max-w-[1080px] grid-cols-1 items-center gap-8 px-6 pb-16 pt-8 md:grid-cols-2 md:gap-16">
@@ -91,19 +78,31 @@ export default function Home() {
             Registra a tu gente, sus fechas clave y sus gustos. Nosotros nos
             encargamos de comprar y enviar el regalo, justo a tiempo.
           </p>
-          <Link
-            href="/registro"
-            className="inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
-            style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
-          >
-            Crear cuenta
-          </Link>
-          <p className="mt-[18px] text-[13px] text-gris-calido">
-            ¿Ya tienes cuenta?{" "}
-            <Link href="/login" className="font-bold text-terracota">
-              Inicia sesión
+          {user ? (
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
+              style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
+            >
+              Ir al dashboard
             </Link>
-          </p>
+          ) : (
+            <>
+              <Link
+                href="/registro"
+                className="inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
+                style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
+              >
+                Crear cuenta
+              </Link>
+              <p className="mt-[18px] text-[13px] text-gris-calido">
+                ¿Ya tienes cuenta?{" "}
+                <Link href="/login" className="font-bold text-terracota">
+                  Inicia sesión
+                </Link>
+              </p>
+            </>
+          )}
         </div>
 
         <div className="flex flex-col gap-3">
@@ -201,17 +200,19 @@ export default function Home() {
             style={{ background: "rgba(242,150,106,0.18)" }}
           />
           <h2 className="relative mb-3 font-display italic font-light text-[2.1rem] text-crema">
-            Empecemos
+            {user ? `Bienvenido de vuelta, ${user.name?.split(" ")[0] ?? ""}` : "Empecemos"}
           </h2>
           <p className="relative mb-7 text-[14.5px] text-crema/75">
-            Te toma dos minutos configurar a tu primera persona.
+            {user
+              ? "Todo listo para que siempre estés presente."
+              : "Te toma dos minutos configurar a tu primera persona."}
           </p>
           <Link
-            href="/registro"
+            href={user ? "/dashboard" : "/registro"}
             className="relative inline-flex items-center justify-center rounded-[10px] bg-terracota px-6 py-3.5 text-[14.5px] font-bold text-white"
             style={{ boxShadow: "0 10px 24px -6px rgba(199,82,42,0.45)" }}
           >
-            Crear cuenta
+            {user ? "Ir al dashboard" : "Crear cuenta"}
           </Link>
         </div>
       </section>

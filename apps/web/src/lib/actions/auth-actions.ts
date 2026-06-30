@@ -4,7 +4,11 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
 import { prisma } from "@/lib/prisma";
-import { signIn } from "@/auth";
+import { signIn, signOut } from "@/auth";
+
+export async function cerrarSesion() {
+  await signOut({ redirectTo: "/" });
+}
 
 const registroSchema = z.object({
   name: z.string().min(1, "El nombre es obligatorio"),
@@ -43,7 +47,7 @@ export async function registrarUsuario(
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/dashboard",
+      redirectTo: "/",
     });
   } catch (error) {
     if (error instanceof CredentialsSignin) {
@@ -80,7 +84,7 @@ export async function loginUsuario(
   try {
     await signIn("credentials", {
       ...parsed.data,
-      redirectTo: "/dashboard",
+      redirectTo: "/",
     });
   } catch (error) {
     if (error instanceof CredentialsSignin) {
