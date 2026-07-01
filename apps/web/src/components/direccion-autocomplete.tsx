@@ -112,10 +112,18 @@ function bestResult(
   return results[0]?.address_components ?? null;
 }
 
-type Props = { onParsed: (parsed: ParsedDireccion) => void };
+type Props = {
+  onParsed: (parsed: ParsedDireccion) => void;
+  onModoChange?: (mapa: boolean) => void;
+};
 
-export function DireccionAutocomplete({ onParsed }: Props) {
+export function DireccionAutocomplete({ onParsed, onModoChange }: Props) {
   const [mapaAbierto, setMapaAbierto] = useState(false);
+
+  const toggleMapa = (v: boolean) => {
+    setMapaAbierto(v);
+    onModoChange?.(v);
+  };
   const [mapaListo, setMapaListo] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -221,7 +229,7 @@ export function DireccionAutocomplete({ onParsed }: Props) {
         </label>
         <button
           type="button"
-          onClick={() => setMapaAbierto((v) => !v)}
+          onClick={() => toggleMapa(!mapaAbierto)}
           className="text-[11px] font-semibold text-terracota"
         >
           {mapaAbierto ? "Cerrar mapa" : "¿No la encuentras? Usa el mapa"}

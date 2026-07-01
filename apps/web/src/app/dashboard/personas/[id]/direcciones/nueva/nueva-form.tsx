@@ -18,6 +18,7 @@ export default function NuevaDireccionForm({
   const [street, setStreet] = useState("");
   const [number, setNumber] = useState("");
   const [district, setDistrict] = useState("");
+  const [modoMapa, setModoMapa] = useState(false);
 
   const handleAutocomplete = useCallback((parsed: ParsedDireccion) => {
     if (parsed.street) setStreet(parsed.street);
@@ -25,11 +26,24 @@ export default function NuevaDireccionForm({
     if (parsed.district) setDistrict(parsed.district);
   }, []);
 
+  const sinDireccion = !modoMapa && !street;
+
   return (
     <form action={formAction} className="flex flex-col gap-4">
       <input type="hidden" name="personId" value={personId} />
 
-      <DireccionAutocomplete onParsed={handleAutocomplete} />
+      <DireccionAutocomplete
+        onParsed={handleAutocomplete}
+        onModoChange={setModoMapa}
+      />
+
+      {/* En modo texto, calle y número van como hidden — el buscador los completó */}
+      {!modoMapa && (
+        <>
+          <input type="hidden" name="street" value={street} />
+          <input type="hidden" name="number" value={number} />
+        </>
+      )}
 
       <Field label="Nombre de la dirección" htmlFor="label">
         <Input
@@ -57,17 +71,20 @@ export default function NuevaDireccionForm({
         </Select>
       </Field>
 
-      <Field label="Calle o avenida" htmlFor="street">
-        <Input
-          id="street"
-          name="street"
-          type="text"
-          placeholder="Ej. Av. Larco"
-          value={street}
-          onChange={(e) => setStreet(e.target.value)}
-          required
-        />
-      </Field>
+      {/* Calle y número solo visibles en modo mapa */}
+      {modoMapa && (
+        <Field label="Calle o avenida" htmlFor="street">
+          <Input
+            id="street"
+            name="street"
+            type="text"
+            placeholder="Ej. Av. Larco"
+            value={street}
+            onChange={(e) => setStreet(e.target.value)}
+            required
+          />
+        </Field>
+      )}
 
       <div className="grid grid-cols-2 gap-3">
         <Field label="Tipo" htmlFor="housingType">
@@ -76,17 +93,19 @@ export default function NuevaDireccionForm({
             <option value="DEPARTAMENTO">Departamento</option>
           </Select>
         </Field>
-        <Field label="Número" htmlFor="number">
-          <Input
-            id="number"
-            name="number"
-            type="text"
-            placeholder="Ej. 345"
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            required
-          />
-        </Field>
+        {modoMapa && (
+          <Field label="Número" htmlFor="number">
+            <Input
+              id="number"
+              name="number"
+              type="text"
+              placeholder="Ej. 345"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              required
+            />
+          </Field>
+        )}
       </div>
 
       <Field label="Referencia" htmlFor="reference">
@@ -107,9 +126,15 @@ export default function NuevaDireccionForm({
 
       <FieldError>{state?.error}</FieldError>
 
-      <Button type="submit" disabled={pending} className="mt-1 w-full">
-        {pending ? "Guardando..." : "Guardar"}
-      </Button>
+      {sinDireccion ? (
+        <p className="mt-1 text-center text-xs text-gris-calido">
+          Busca tu dirección arriba para continuar
+        </p>
+      ) : (
+        <Button type="submit" disabled={pending} className="mt-1 w-full">
+          {pending ? "Guardando..." : "Guardar"}
+        </Button>
+      )}
     </form>
   );
 }
