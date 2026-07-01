@@ -21,6 +21,37 @@
   --shadow-menu: 0 8px 16px -4px rgba(61,31,46,0.10);
 }
 
+/* Google Maps autocomplete dropdown — siempre por encima del contenido */
+.pac-container {
+  z-index: 9999 !important;
+  font-family: var(--font-jakarta), sans-serif;
+  border: 1px solid var(--color-arena);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  margin-top: 4px;
+  overflow: hidden;
+}
+.pac-item {
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--color-carbon);
+  cursor: pointer;
+}
+.pac-item:hover,
+.pac-item-selected {
+  background: var(--color-crema);
+}
+.pac-item-query {
+  font-size: 13px;
+  color: var(--color-carbon);
+}
+.pac-matched {
+  font-weight: 600;
+}
+.pac-icon {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     transition-duration: 0.01ms !important;
