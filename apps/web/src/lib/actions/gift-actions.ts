@@ -22,6 +22,13 @@ export async function agregarRegalo(formData: FormData) {
   const productId = formData.get("productId");
 
   if (typeof occasionId !== "string" || typeof productId !== "string") return;
+
+  const product = await prisma.product.findUnique({
+    where: { id: productId },
+    select: { category: true },
+  });
+  if (product?.category === "VINOS" && formData.get("ageConfirmed") !== "true") return;
+
   const ocasion = await occasionDeUsuario(occasionId, user.id);
   if (!ocasion) return;
 

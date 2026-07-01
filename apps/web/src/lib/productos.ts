@@ -21,7 +21,7 @@ export function formatearPrecio(precio: number | string) {
 
 const ESTADO_REGALO_LABEL = {
   PROGRAMADO: "Programado",
-  CUMPLIDO: "Cumplido",
+  CUMPLIDO: "Entregado",
   CANCELADO: "Cancelado",
 } as const;
 

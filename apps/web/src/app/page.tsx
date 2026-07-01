@@ -253,11 +253,18 @@ export default async function Home() {
             <h4 className="mb-4 text-[11px] font-bold uppercase tracking-[0.1em] text-carbon">
               Legal
             </h4>
-            {["Términos de uso", "Privacidad"].map((item) => (
-              <span key={item} className="mb-2.5 block text-[13px] text-gris-calido">
-                {item} — próximamente
-              </span>
-            ))}
+            <Link
+              href="/legal/terminos"
+              className="mb-2.5 block text-[13px] text-gris-calido hover:text-terracota transition-colors"
+            >
+              Términos de uso
+            </Link>
+            <Link
+              href="/legal/privacidad"
+              className="mb-2.5 block text-[13px] text-gris-calido hover:text-terracota transition-colors"
+            >
+              Privacidad
+            </Link>
           </div>
         </div>
 

@@ -84,6 +84,25 @@ export function UserMenu({ name, email }: Props) {
           </div>
 
           <div className="border-t border-arena p-1.5">
+            <Link
+              href="/dashboard/perfil"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] text-carbon hover:bg-crema transition-colors"
+            >
+              <span aria-hidden="true">⚙️</span> Mi perfil
+            </Link>
+            <Link
+              href="/dashboard/pagos"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] text-carbon hover:bg-crema transition-colors"
+            >
+              <span aria-hidden="true">💳</span> Métodos de pago
+            </Link>
+          </div>
+
+          <div className="border-t border-arena p-1.5">
             <form action={cerrarSesion}>
               <button
                 type="submit"

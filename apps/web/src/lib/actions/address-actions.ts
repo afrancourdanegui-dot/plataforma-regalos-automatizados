@@ -15,16 +15,19 @@ const direccionSchema = z.object({
   street: z.string().min(1, "La calle o avenida es obligatoria"),
   housingType: z.enum(["CASA", "DEPARTAMENTO"]),
   number: z.string().min(1, "El número es obligatorio"),
+  reference: z.string().max(200).optional(),
   isPrimary: z.boolean(),
 });
 
 function readDireccionForm(formData: FormData) {
+  const reference = formData.get("reference");
   return direccionSchema.safeParse({
     label: formData.get("label"),
     district: formData.get("district"),
     street: formData.get("street"),
     housingType: formData.get("housingType"),
     number: formData.get("number"),
+    reference: reference ? String(reference) : undefined,
     isPrimary: formData.get("isPrimary") === "on",
   });
 }
@@ -75,6 +78,7 @@ export async function crearDireccion(
         street: parsed.data.street,
         housingType: parsed.data.housingType,
         number: parsed.data.number,
+        reference: parsed.data.reference ?? null,
         isPrimary: parsed.data.isPrimary || esPrimera,
       },
     });
@@ -124,6 +128,7 @@ export async function actualizarDireccion(
         street: parsed.data.street,
         housingType: parsed.data.housingType,
         number: parsed.data.number,
+        reference: parsed.data.reference ?? null,
         isPrimary: parsed.data.isPrimary,
       },
     });

@@ -9,6 +9,7 @@ import { motivoDeOcasion } from "@/lib/ocasiones";
 import { CATEGORIA_LABEL, CATEGORIAS_ORDEN, formatearPrecio } from "@/lib/productos";
 import ProductFilters from "@/components/product-filters";
 import DireccionSelector from "./direccion-selector";
+import { AgregarAlcohol } from "@/components/agregar-alcohol";
 
 export default async function RegalosDeOcasionPage({
   params,
@@ -203,6 +204,11 @@ export default async function RegalosDeOcasionPage({
                               >
                                 Ya elegido
                               </span>
+                            ) : producto.category === "VINOS" ? (
+                              <AgregarAlcohol
+                                occasionId={ocasion.id}
+                                productId={producto.id}
+                              />
                             ) : (
                               <form action={agregarRegalo}>
                                 <input type="hidden" name="occasionId" value={ocasion.id} />

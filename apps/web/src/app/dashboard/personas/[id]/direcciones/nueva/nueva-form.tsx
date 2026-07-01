@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState, useCallback } from "react";
 import { crearDireccion } from "@/lib/actions/address-actions";
 import { Button } from "@/components/ui/button";
 import { Field, Input, Select, FieldError } from "@/components/ui/input";
 import { DISTRITOS_LIMA } from "@/lib/lima-distritos";
+import { DireccionAutocomplete, type ParsedDireccion } from "@/components/direccion-autocomplete";
 
 export default function NuevaDireccionForm({
   personId,
@@ -13,14 +14,22 @@ export default function NuevaDireccionForm({
   personId: string;
   esPrimera: boolean;
 }) {
-  const [state, formAction, pending] = useActionState(
-    crearDireccion,
-    undefined
-  );
+  const [state, formAction, pending] = useActionState(crearDireccion, undefined);
+  const [street, setStreet] = useState("");
+  const [number, setNumber] = useState("");
+  const [district, setDistrict] = useState("");
+
+  const handleAutocomplete = useCallback((parsed: ParsedDireccion) => {
+    if (parsed.street) setStreet(parsed.street);
+    if (parsed.number) setNumber(parsed.number);
+    if (parsed.district) setDistrict(parsed.district);
+  }, []);
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
       <input type="hidden" name="personId" value={personId} />
+
+      <DireccionAutocomplete onParsed={handleAutocomplete} />
 
       <Field label="Nombre de la dirección" htmlFor="label">
         <Input
@@ -33,13 +42,16 @@ export default function NuevaDireccionForm({
       </Field>
 
       <Field label="Distrito" htmlFor="district">
-        <Select id="district" name="district" defaultValue="">
-          <option value="" disabled>
-            Elige un distrito
-          </option>
-          {DISTRITOS_LIMA.map((distrito) => (
-            <option key={distrito.value} value={distrito.value}>
-              {distrito.label}
+        <Select
+          id="district"
+          name="district"
+          value={district}
+          onChange={(e) => setDistrict(e.target.value)}
+        >
+          <option value="" disabled>Elige un distrito</option>
+          {DISTRITOS_LIMA.map((d) => (
+            <option key={d.value} value={d.value}>
+              {d.label}
             </option>
           ))}
         </Select>
@@ -51,6 +63,8 @@ export default function NuevaDireccionForm({
           name="street"
           type="text"
           placeholder="Ej. Av. Larco"
+          value={street}
+          onChange={(e) => setStreet(e.target.value)}
           required
         />
       </Field>
@@ -63,9 +77,26 @@ export default function NuevaDireccionForm({
           </Select>
         </Field>
         <Field label="Número" htmlFor="number">
-          <Input id="number" name="number" type="text" placeholder="Ej. 345" required />
+          <Input
+            id="number"
+            name="number"
+            type="text"
+            placeholder="Ej. 345"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            required
+          />
         </Field>
       </div>
+
+      <Field label="Referencia" htmlFor="reference">
+        <Input
+          id="reference"
+          name="reference"
+          type="text"
+          placeholder="Ej. Frente al parque, segundo piso"
+        />
+      </Field>
 
       {!esPrimera && (
         <label className="flex items-center gap-2 text-sm text-carbon">

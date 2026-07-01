@@ -1,10 +1,11 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState, useCallback } from "react";
 import { actualizarDireccion, eliminarDireccion } from "@/lib/actions/address-actions";
 import { Button } from "@/components/ui/button";
 import { Field, Input, Select, FieldError } from "@/components/ui/input";
 import { DISTRITOS_LIMA } from "@/lib/lima-distritos";
+import { DireccionAutocomplete, type ParsedDireccion } from "@/components/direccion-autocomplete";
 
 type Props = {
   direccion: {
@@ -14,15 +15,22 @@ type Props = {
     street: string;
     housingType: string;
     number: string;
+    reference: string | null;
     isPrimary: boolean;
   };
 };
 
 export default function EditarDireccionForm({ direccion }: Props) {
-  const [state, formAction, pending] = useActionState(
-    actualizarDireccion,
-    undefined
-  );
+  const [state, formAction, pending] = useActionState(actualizarDireccion, undefined);
+  const [street, setStreet] = useState(direccion.street);
+  const [number, setNumber] = useState(direccion.number);
+  const [district, setDistrict] = useState(direccion.district);
+
+  const handleAutocomplete = useCallback((parsed: ParsedDireccion) => {
+    if (parsed.street) setStreet(parsed.street);
+    if (parsed.number) setNumber(parsed.number);
+    if (parsed.district) setDistrict(parsed.district);
+  }, []);
 
   return (
     <div className="flex w-full flex-col gap-4">
@@ -30,22 +38,36 @@ export default function EditarDireccionForm({ direccion }: Props) {
         <form action={formAction} className="flex flex-col gap-4">
           <input type="hidden" name="id" value={direccion.id} />
 
+          <DireccionAutocomplete onParsed={handleAutocomplete} />
+
           <Field label="Nombre de la dirección" htmlFor="label">
             <Input id="label" name="label" type="text" defaultValue={direccion.label} required />
           </Field>
 
           <Field label="Distrito" htmlFor="district">
-            <Select id="district" name="district" defaultValue={direccion.district}>
-              {DISTRITOS_LIMA.map((distrito) => (
-                <option key={distrito.value} value={distrito.value}>
-                  {distrito.label}
+            <Select
+              id="district"
+              name="district"
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
+            >
+              {DISTRITOS_LIMA.map((d) => (
+                <option key={d.value} value={d.value}>
+                  {d.label}
                 </option>
               ))}
             </Select>
           </Field>
 
           <Field label="Calle o avenida" htmlFor="street">
-            <Input id="street" name="street" type="text" defaultValue={direccion.street} required />
+            <Input
+              id="street"
+              name="street"
+              type="text"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              required
+            />
           </Field>
 
           <div className="grid grid-cols-2 gap-3">
@@ -56,16 +78,32 @@ export default function EditarDireccionForm({ direccion }: Props) {
               </Select>
             </Field>
             <Field label="Número" htmlFor="number">
-              <Input id="number" name="number" type="text" defaultValue={direccion.number} required />
+              <Input
+                id="number"
+                name="number"
+                type="text"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+                required
+              />
             </Field>
           </div>
+
+          <Field label="Referencia" htmlFor="reference">
+            <Input
+              id="reference"
+              name="reference"
+              type="text"
+              placeholder="Ej. Frente al parque, segundo piso"
+              defaultValue={direccion.reference ?? ""}
+            />
+          </Field>
 
           {direccion.isPrimary ? (
             <>
               <input type="hidden" name="isPrimary" value="on" />
               <p className="text-sm text-gris-calido">
-                Es la dirección principal. Para quitarle ese rol, marca otra
-                dirección como principal.
+                Es la dirección principal. Para quitarle ese rol, marca otra como principal.
               </p>
             </>
           ) : (

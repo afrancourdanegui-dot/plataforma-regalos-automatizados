@@ -222,11 +222,16 @@ export default async function DashboardPage() {
                       href={`/dashboard/direcciones/${direccion.id}/editar`}
                       className="flex items-center justify-between rounded-lg bg-crema px-3 py-2.5 text-xs"
                     >
-                      <span className="font-medium text-carbon">
-                        {direccion.label}: {HOUSING_TYPE_LABEL[direccion.housingType]}{" "}
-                        {direccion.number}, {direccion.street}
+                      <span className="flex flex-col gap-0.5">
+                        <span className="font-medium text-carbon">
+                          {direccion.label}: {HOUSING_TYPE_LABEL[direccion.housingType]}{" "}
+                          {direccion.number}, {direccion.street}
+                        </span>
+                        {direccion.reference && (
+                          <span className="text-gris-calido">{direccion.reference}</span>
+                        )}
                       </span>
-                      <span className="text-gris-calido">
+                      <span className="ml-3 shrink-0 text-right text-gris-calido">
                         {DISTRITO_LABEL[direccion.district]}
                         {direccion.isPrimary ? " · Principal" : ""}
                       </span>
