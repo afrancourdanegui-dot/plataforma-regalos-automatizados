@@ -194,6 +194,16 @@ export function diasRestantes(fecha: Date): number {
   return Math.round(ms / (1000 * 60 * 60 * 24));
 }
 
+export function etiquetaDias(dias: number): string {
+  if (dias <= 0) return "Hoy";
+  if (dias === 1) return "Mañana";
+  return `En ${dias} días`;
+}
+
+export function formatearFechaLarga(fecha: Date): string {
+  return `${fecha.getDate()} de ${MESES[fecha.getMonth()]}`;
+}
+
 export function badgeDeOcasion(ocasion: OcasionFecha) {
   const proxima = proximaFechaOcasion(ocasion);
   const dias = diasRestantes(proxima);

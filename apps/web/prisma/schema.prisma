@@ -33,6 +33,7 @@ model Person {
   name         String
   relationship String
   notes        String?
+  preferences  String[] @default([])
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 

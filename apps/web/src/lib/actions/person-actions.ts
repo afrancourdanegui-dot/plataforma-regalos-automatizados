@@ -10,13 +10,20 @@ const personaSchema = z.object({
   name: z.string().min(1, "El nombre es obligatorio"),
   relationship: z.string().min(1, "La relación es obligatoria"),
   notes: z.string().optional(),
+  preferences: z.array(z.string()),
 });
 
 function readPersonaForm(formData: FormData) {
+  const preferences = String(formData.get("preferences") ?? "")
+    .split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean);
+
   return personaSchema.safeParse({
     name: formData.get("name"),
     relationship: formData.get("relationship"),
     notes: formData.get("notes") || undefined,
+    preferences,
   });
 }
 

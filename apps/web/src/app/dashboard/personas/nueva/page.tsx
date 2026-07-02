@@ -30,7 +30,15 @@ export default function NuevaPersonaPage() {
                 required
               />
             </Field>
-            <Field label="Notas / preferencias (opcional)" htmlFor="notes">
+            <Field label="Preferencias (opcional)" htmlFor="preferences">
+              <Input
+                id="preferences"
+                name="preferences"
+                type="text"
+                placeholder="Ej. Flores, Tortas, Chocolates"
+              />
+            </Field>
+            <Field label="Notas (opcional)" htmlFor="notes">
               <Textarea id="notes" name="notes" rows={3} placeholder="Le gusta..." />
             </Field>
 

@@ -31,6 +31,9 @@ export default function LoginPage() {
             </Field>
             <Field label="Contraseña" htmlFor="password">
               <Input id="password" name="password" type="password" placeholder="••••••••" required />
+              <Link href="/recuperar" className="mt-1 block text-right text-[11.5px] font-semibold text-terracota">
+                ¿Olvidaste tu contraseña?
+              </Link>
             </Field>
 
             <FieldError>{state?.error}</FieldError>

@@ -11,6 +11,7 @@ type Props = {
     name: string;
     relationship: string;
     notes: string | null;
+    preferences: string[];
   };
 };
 
@@ -38,7 +39,16 @@ export default function EditarPersonaForm({ persona }: Props) {
               required
             />
           </Field>
-          <Field label="Notas / preferencias (opcional)" htmlFor="notes">
+          <Field label="Preferencias (opcional)" htmlFor="preferences">
+            <Input
+              id="preferences"
+              name="preferences"
+              type="text"
+              defaultValue={persona.preferences.join(", ")}
+              placeholder="Ej. Flores, Tortas, Chocolates"
+            />
+          </Field>
+          <Field label="Notas (opcional)" htmlFor="notes">
             <Textarea id="notes" name="notes" defaultValue={persona.notes ?? ""} rows={3} />
           </Field>
 
